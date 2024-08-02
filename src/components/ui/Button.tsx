@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import FlexWrapper from './FlexWrapper';
+import Flex from './Flex';
 
-const StyledLink = styled(FlexWrapper)`
+const StyledLink = styled(Flex)`
   color: ${({ theme }) => theme.white};
   padding: 5px 10px;
   border-radius: 5px;
@@ -9,7 +9,6 @@ const StyledLink = styled(FlexWrapper)`
   gap: 5px;
   font-size: 12px;
   min-width: 90px;
-  max-width: max-content;
   cursor: pointer;
 `;
 

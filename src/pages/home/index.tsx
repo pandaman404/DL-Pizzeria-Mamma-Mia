@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Header from './components/Header';
-import RootLayout from '@/components/RootLayout';
+import RootLayout from '@/components/ui/RootLayout';
 
 const HomePage = () => {
   return (
