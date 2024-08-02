@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiSolidLock } from 'react-icons/bi';
+import { BiSolidLockOpen } from 'react-icons/bi';
+import { BsFillPersonFill } from 'react-icons/bs';
 
 import Logo from './ui/Logo';
 import Flex from './ui/Flex';
@@ -8,6 +10,9 @@ import Button from './ui/Button';
 import CartButton from './CartButton';
 
 const Navbar = () => {
+  const token = false;
+  const total = 25000;
+
   return (
     <Wrapper as='nav'>
       <RootContainer>
@@ -17,14 +22,29 @@ const Navbar = () => {
             <Button as='a' onClick={() => console.log('Home')}>
               <FaPizzaSlice /> Home
             </Button>
-            <Button as='a' onClick={() => console.log('Login')}>
-              <BiSolidLock /> Login
-            </Button>
-            <Button as='a' onClick={() => console.log('Register')}>
-              <BiSolidLock /> Register
-            </Button>
+            {token ? (
+              <>
+                <Button as='a' onClick={() => console.log('Profile')}>
+                  <BsFillPersonFill />
+                  Profile
+                </Button>
+                <Button as='a' onClick={() => console.log('Logout')}>
+                  <BiSolidLockOpen />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button as='a' onClick={() => console.log('Login')}>
+                  <BiSolidLock /> Login
+                </Button>
+                <Button as='a' onClick={() => console.log('Register')}>
+                  <BiSolidLock /> Register
+                </Button>
+              </>
+            )}
           </LinksContainer>
-          <CartButton />
+          <CartButton total={total} />
         </Buttons>
       </RootContainer>
     </Wrapper>

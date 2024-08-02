@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { IoCart } from 'react-icons/io5';
 import Button from '@/components/ui/Button';
+import { formatNumber } from '@/utils/formatNumber';
 
-const CartButton = () => {
+interface CartButtonProps {
+  total: number;
+}
+
+const CartButton = ({ total }: CartButtonProps) => {
   return (
-    <Wrapper as='button' onClick={() => console.log('Total: $25.000')}>
+    <Wrapper as='button' onClick={() => console.log(`Total: $${total}`)}>
       <IoCart />
-      Total: $25.000
+      Total: ${formatNumber(total)}
     </Wrapper>
   );
 };
