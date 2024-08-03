@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FaPizzaSlice } from 'react-icons/fa';
+
+import { BiSolidHome } from 'react-icons/bi';
 import { BiSolidLock } from 'react-icons/bi';
 import { BiSolidLockOpen } from 'react-icons/bi';
 import { BsFillPersonFill } from 'react-icons/bs';
@@ -20,7 +21,7 @@ const Navbar = () => {
         <Buttons>
           <LinksContainer>
             <Button as='a' onClick={() => console.log('Home')}>
-              <FaPizzaSlice /> Home
+              <BiSolidHome /> Home
             </Button>
             {token ? (
               <>

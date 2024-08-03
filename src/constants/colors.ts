@@ -6,4 +6,5 @@ export const defaultTheme = {
   lightYellow: '#FCBF49',
   softBeige: '#EAE2B7',
   white: '#FFFFFF',
+  lightGray: '#DFDFDF',
 };

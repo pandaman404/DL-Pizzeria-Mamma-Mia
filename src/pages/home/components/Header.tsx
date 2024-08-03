@@ -18,15 +18,11 @@ const Wrapper = styled(Flex)`
   height: 30dvh;
   width: 100%;
   max-width: 1360px;
-  margin: 0 auto;
   flex-direction: column;
   text-align: center;
   padding: 0 20px;
   gap: 10px;
-
-  @media (min-width: 1200px) {
-    height: 40dvh;
-  }
+  border-bottom: 5px solid ${({ theme }) => theme.softBeige};
 
   h1 {
     color: ${({ theme }) => theme.lightYellow};

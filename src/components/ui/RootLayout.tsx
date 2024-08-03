@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column;
+  align-items: center;
 `;
 
 export default RootLayout;
