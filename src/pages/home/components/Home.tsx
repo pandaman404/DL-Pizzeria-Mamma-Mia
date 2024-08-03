@@ -21,6 +21,10 @@ const Wrapper = styled(Grid)`
   border-radius: 5px;
   padding: 20px 30px;
   margin: 50px auto;
+
+  @media (min-width: 1360px) {
+    padding: 20px 0;
+  }
 `;
 
 export default Home;
