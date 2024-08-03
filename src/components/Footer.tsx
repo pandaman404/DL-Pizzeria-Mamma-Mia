@@ -12,6 +12,7 @@ const Footer = () => {
 
 const Wrapper = styled(Flex)`
   background-color: ${({ theme }) => theme.lightYellow};
+  color: ${({ theme }) => theme.deepBlue};
   min-height: 10dvh;
   font-weight: 500;
   width: 100%;

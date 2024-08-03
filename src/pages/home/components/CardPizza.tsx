@@ -62,7 +62,6 @@ const Wrapper = styled(Flex)`
 const PizzaImage = styled.img`
   width: 100%;
   height: auto;
-  max-height: 200px;
   object-fit: cover;
 `;
 
