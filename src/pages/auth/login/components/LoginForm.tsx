@@ -3,32 +3,28 @@ import Container from '@/components/ui/Container';
 import Flex from '@/components/ui/Flex';
 import FormField from '@/components/ui/FormField';
 import Title from '@/components/ui/Title';
-import { RegisterFormValues } from '@/types/forms/RegisterFormValues';
+import { LoginFormValues } from '@/types/forms/LoginFormValues';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import styled from 'styled-components';
 import * as yup from 'Yup';
 
-const RegisterFormSchema = yup.object().shape({
+const LoginFormSchema = yup.object().shape({
   email: yup.string().email('Ingresa un email valido').required('Campo requerido'),
   password: yup.string().min(6, 'La contraseña debe tener minimo 6 caracteres').required('Campo requerido'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Las contraseñas no coinciden')
-    .required('Campo requerido'),
 });
 
-const RegisterForm = () => {
-  const initialValues: RegisterFormValues = { email: '', password: '', confirmPassword: '' };
+const LoginForm = () => {
+  const initialValues: LoginFormValues = { email: '', password: '' };
 
   return (
     <Wrapper>
-      <Title as='h2'>Register</Title>
+      <Title as='h2'>Login</Title>
       <Formik
         initialValues={initialValues}
-        validationSchema={RegisterFormSchema}
+        validationSchema={LoginFormSchema}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
-          alert('Register completado exitosamente!');
+          alert('Login completado exitosamente!');
           actions.setSubmitting(false);
         }}
       >
@@ -43,12 +39,7 @@ const RegisterForm = () => {
             <Field id='password' name='password' type='password' placeholder='******' />
             <ErrorMessage name='password' component='div' className='error' />
           </FormField>
-          <FormField>
-            <label htmlFor='confirmPassword'>Confirmar Contraseña:</label>
-            <Field id='confirmPassword' name='confirmPassword' type='password' placeholder='******' />
-            <ErrorMessage name='confirmPassword' component='div' className='error' />
-          </FormField>
-          <SubmitButton type='submit'>Registrarse</SubmitButton>
+          <SubmitButton type='submit'>Ingresar</SubmitButton>
         </Form>
       </Formik>
     </Wrapper>
@@ -82,4 +73,4 @@ const Wrapper = styled(Container)`
   }
 `;
 
-export default RegisterForm;
+export default LoginForm;

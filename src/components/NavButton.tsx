@@ -39,8 +39,6 @@ const Wrapper = styled(NavLink)`
   color: ${({ theme }) => theme.white};
   text-decoration: none;
   font-size: 14px;
-  /* display: flex;
-  align-items: center; */
   gap: 3px;
 
   &.active {
