@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
 
-const Flex = styled.div`
+const Flex = css`
   display: flex;
   flex-direction: row;
   align-items: center;

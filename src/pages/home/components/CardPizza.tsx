@@ -18,7 +18,7 @@ interface CardPizzaProps {
 const CardPizza = ({ pizza }: CardPizzaProps) => {
   const { name, price, ingredients, img } = pizza;
   return (
-    <Wrapper as='article'>
+    <Wrapper>
       <PizzaImage src={img} />
       <PizzaTitle as='h2'>
         <GiPizzaSlice size={30} />
@@ -52,7 +52,8 @@ const CardPizza = ({ pizza }: CardPizzaProps) => {
   );
 };
 
-const Wrapper = styled(Flex)`
+const Wrapper = styled.article`
+  ${Flex}
   border: 1px solid ${({ theme }) => theme.lightGray};
   border-radius: 5px;
   align-items: flex-start;
@@ -76,7 +77,8 @@ const PizzaTitle = styled(Title)`
   border-bottom: 1px solid ${({ theme }) => theme.lightGray};
 `;
 
-const IngredientsContainer = styled(Flex)`
+const IngredientsContainer = styled.div`
+  ${Flex}
   min-height: 100px;
   width: 100%;
   padding: 20px;
@@ -109,7 +111,8 @@ const IngredientsContainer = styled(Flex)`
   }
 `;
 
-const PriceContainer = styled(Flex)`
+const PriceContainer = styled.div`
+  ${Flex}
   width: 100%;
   padding: 20px;
   flex-direction: column;

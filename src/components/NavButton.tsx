@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { BiSolidHome, BiSolidLock, BiSolidLockOpen } from 'react-icons/bi';
 import { BsFillPersonFill } from 'react-icons/bs';
+import Flex from './ui/Flex';
 
 interface NavButtonProps {
   pathName: string;
@@ -34,11 +35,12 @@ const NavButton = ({ pathName, text }: NavButtonProps) => {
 };
 
 const Wrapper = styled(NavLink)`
+  ${Flex}
   color: ${({ theme }) => theme.white};
   text-decoration: none;
   font-size: 14px;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   gap: 3px;
 
   &.active {

@@ -10,7 +10,8 @@ const Footer = () => {
   );
 };
 
-const Wrapper = styled(Flex)`
+const Wrapper = styled.footer`
+  ${Flex}
   background-color: ${({ theme }) => theme.lightYellow};
   color: ${({ theme }) => theme.deepBlue};
   min-height: 10dvh;

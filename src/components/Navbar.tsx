@@ -35,13 +35,15 @@ const Navbar = () => {
   );
 };
 
-const Wrapper = styled(Flex)`
+const Wrapper = styled.nav`
+  ${Flex}
   width: 100%;
   background-color: ${({ theme }) => theme.brightRed};
   color: ${({ theme }) => theme.white};
 `;
 
-const RootContainer = styled(Flex)`
+const RootContainer = styled.div`
+  ${Flex}
   padding: 25px;
   width: 100%;
   max-width: 1360px;
@@ -55,11 +57,13 @@ const RootContainer = styled(Flex)`
   }
 `;
 
-const LinksContainer = styled(Flex)`
+const LinksContainer = styled.div`
+  ${Flex}
   gap: 15px;
 `;
 
-const Buttons = styled(Flex)`
+const Buttons = styled.div`
+  ${Flex}
   display: none;
 
   @media (min-width: 1200px) {

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Flex from './Flex';
 
-const Button = styled(Flex)`
+const Button = styled.button`
+  ${Flex}
   color: ${({ theme }) => theme.white};
   padding: 8px 10px;
   border-radius: 5px;

@@ -11,7 +11,8 @@ const Header = () => {
   );
 };
 
-const Wrapper = styled(Flex)`
+const Wrapper = styled.header`
+  ${Flex}
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(${Background});
   background-size: cover;
   background-position: center;
