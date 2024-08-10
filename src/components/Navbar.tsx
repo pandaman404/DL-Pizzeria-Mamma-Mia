@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
-import { BiSolidHome } from 'react-icons/bi';
-import { BiSolidLock } from 'react-icons/bi';
-import { BiSolidLockOpen } from 'react-icons/bi';
-import { BsFillPersonFill } from 'react-icons/bs';
-
 import Logo from './ui/Logo';
 import Flex from './ui/Flex';
-import Button from './ui/Button';
 import CartButton from './CartButton';
+import NavButton from './NavButton';
 
 const Navbar = () => {
   const token = false;
@@ -20,28 +15,16 @@ const Navbar = () => {
         <Logo />
         <Buttons>
           <LinksContainer>
-            <Button as='a' onClick={() => console.log('Home')}>
-              <BiSolidHome /> Home
-            </Button>
+            <NavButton pathName='/home' text='Home' />
             {token ? (
               <>
-                <Button as='a' onClick={() => console.log('Profile')}>
-                  <BsFillPersonFill />
-                  Profile
-                </Button>
-                <Button as='a' onClick={() => console.log('Logout')}>
-                  <BiSolidLockOpen />
-                  Logout
-                </Button>
+                <NavButton pathName='/profile' text='Profile' />
+                <NavButton pathName='/logout' text='Logout' />
               </>
             ) : (
               <>
-                <Button as='a' onClick={() => console.log('Login')}>
-                  <BiSolidLock /> Login
-                </Button>
-                <Button as='a' onClick={() => console.log('Register')}>
-                  <BiSolidLock /> Register
-                </Button>
+                <NavButton pathName='/login' text='Login' />
+                <NavButton pathName='/register' text='Register' />
               </>
             )}
           </LinksContainer>
@@ -73,7 +56,7 @@ const RootContainer = styled(Flex)`
 `;
 
 const LinksContainer = styled(Flex)`
-  gap: 10px;
+  gap: 15px;
 `;
 
 const Buttons = styled(Flex)`
