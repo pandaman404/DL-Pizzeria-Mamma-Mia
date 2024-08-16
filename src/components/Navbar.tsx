@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Logo from './ui/Logo';
 import Flex from './ui/Flex';
-import CartButton from './CartButton';
+import CartTotalButton from './CartTotalButton';
 import NavButton from './NavButton';
 
 const Navbar = () => {
@@ -28,7 +28,7 @@ const Navbar = () => {
               </>
             )}
           </LinksContainer>
-          <CartButton total={total} />
+          <CartTotalButton total={total} />
         </Buttons>
       </RootContainer>
     </Wrapper>
@@ -40,6 +40,7 @@ const Wrapper = styled.nav`
   width: 100%;
   background-color: ${({ theme }) => theme.brightRed};
   color: ${({ theme }) => theme.white};
+  position: relative;
 `;
 
 const RootContainer = styled.div`

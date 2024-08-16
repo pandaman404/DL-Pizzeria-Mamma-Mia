@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: relative;
 `;
 
 export default RootLayout;

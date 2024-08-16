@@ -1,4 +1,5 @@
 import type { Pizza } from '@/types/Pizza';
+import { PizzaCartItem } from '@/types/PizzaCartItem';
 
 export const pizzas: Pizza[] = [
   {
@@ -52,7 +53,7 @@ export const pizzas: Pizza[] = [
 ];
 
 // Simulación de un carrito de compras
-export const pizzaCart = [
+export const pizzaCart: PizzaCartItem[] = [
   {
     id: 'P001',
     name: 'napolitana',

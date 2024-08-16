@@ -7,7 +7,7 @@ interface CartButtonProps {
   total: number;
 }
 
-const CartButton = ({ total }: CartButtonProps) => {
+const CartTotalButton = ({ total }: CartButtonProps) => {
   return (
     <Wrapper as='button' onClick={() => console.log(`Total: $${total}`)}>
       <IoCart />
@@ -24,4 +24,4 @@ const Wrapper = styled(Button)`
   font-weight: 600;
 `;
 
-export default CartButton;
+export default CartTotalButton;
