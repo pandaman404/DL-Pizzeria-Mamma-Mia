@@ -1,8 +1,8 @@
 import type { Pizza } from '@/types/Pizza';
 import { formatNumber } from '@/utils/formatNumber';
+import { truncateText } from '@/utils/truncateText';
 
 import { GiPizzaSlice } from 'react-icons/gi';
-import { VscDebugBreakpointLogUnverified } from 'react-icons/vsc';
 import { PiEyesFill } from 'react-icons/pi';
 import { IoCart } from 'react-icons/io5';
 
@@ -10,13 +10,14 @@ import Flex from '@/components/ui/Flex';
 import Title from '@/components/ui/Title';
 import styled from 'styled-components';
 import Button from '@/components/ui/Button';
+import Ingredients from './Ingredients';
 
 interface CardPizzaProps {
   pizza: Pizza;
 }
 
 const CardPizza = ({ pizza }: CardPizzaProps) => {
-  const { name, price, ingredients, img } = pizza;
+  const { desc, name, price, ingredients, img } = pizza;
   return (
     <Wrapper>
       <PizzaImage src={img} />
@@ -24,18 +25,10 @@ const CardPizza = ({ pizza }: CardPizzaProps) => {
         <GiPizzaSlice size={30} />
         Pizza {name}
       </PizzaTitle>
+      <PizzaDesc>{truncateText(desc, 260)}</PizzaDesc>
       <IngredientsContainer>
         <h3>Ingredientes:</h3>
-        <div>
-          {ingredients.map((ingredient) => {
-            return (
-              <article key={crypto.randomUUID()}>
-                <VscDebugBreakpointLogUnverified />
-                {ingredient}
-              </article>
-            );
-          })}
-        </div>
+        <Ingredients items={ingredients} />
       </IngredientsContainer>
       <PriceContainer>
         <span>${formatNumber(price)}</span>
@@ -57,6 +50,7 @@ const Wrapper = styled.article`
   border: 1px solid ${({ theme }) => theme.lightGray};
   border-radius: 5px;
   align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
 `;
 
@@ -77,6 +71,13 @@ const PizzaTitle = styled(Title)`
   border-bottom: 1px solid ${({ theme }) => theme.lightGray};
 `;
 
+const PizzaDesc = styled.p`
+  font-size: 12px;
+  padding: 30px 20px 0px;
+  color: ${({ theme }) => theme.gray};
+  overflow: hidden;
+`;
+
 const IngredientsContainer = styled.div`
   ${Flex}
   min-height: 100px;
@@ -92,22 +93,6 @@ const IngredientsContainer = styled.div`
     font-size: 14px;
     text-transform: uppercase;
     width: 100%;
-  }
-
-  div {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 5px;
-
-    article {
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      text-transform: capitalize;
-      gap: 1px;
-      color: ${({ theme }) => theme.deepBlue};
-    }
   }
 `;
 

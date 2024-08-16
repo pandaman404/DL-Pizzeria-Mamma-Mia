@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Wrapper>
       {pizzas.map((pizza) => {
-        return <CardPizza key={crypto.randomUUID()} pizza={pizza} />;
+        return <CardPizza key={pizza.id} pizza={pizza} />;
       })}
     </Wrapper>
   );
