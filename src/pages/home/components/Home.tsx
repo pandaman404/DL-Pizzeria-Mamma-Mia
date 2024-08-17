@@ -1,15 +1,20 @@
 import Grid from '@/components/ui/Grid';
 import styled from 'styled-components';
 import CardPizza from './CardPizza';
-import { pizzas } from '@/mocks/pizzas';
 import Container from '@/components/ui/Container';
+import { useLoadPizzas } from '@/hooks/useLoadPizzas';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 const Home = () => {
+  const { pizzas, isLoading } = useLoadPizzas();
   return (
     <Wrapper>
-      {pizzas.map((pizza) => {
-        return <CardPizza key={pizza.id} pizza={pizza} />;
-      })}
+      {(isLoading || !pizzas.length) && <LoadingSpinner />}
+      {!isLoading &&
+        pizzas.length &&
+        pizzas.map((pizza) => {
+          return <CardPizza key={pizza.id} pizza={pizza} />;
+        })}
     </Wrapper>
   );
 };
