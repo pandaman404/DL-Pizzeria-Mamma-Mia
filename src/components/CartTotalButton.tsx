@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IoCart } from 'react-icons/io5';
 import Button from '@/components/ui/Button';
 import { formatNumber } from '@/utils/formatNumber';
+import { NavLink } from 'react-router-dom';
 
 interface CartButtonProps {
   total: number;
@@ -9,7 +10,7 @@ interface CartButtonProps {
 
 const CartTotalButton = ({ total }: CartButtonProps) => {
   return (
-    <Wrapper as='button' onClick={() => console.log(`Total: $${total}`)}>
+    <Wrapper as={NavLink} to='/cart'>
       <IoCart />
       Total: ${formatNumber(total)}
     </Wrapper>

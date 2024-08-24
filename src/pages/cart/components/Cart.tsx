@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import Flex from '../ui/Flex';
-import Container from '../ui/Container';
-import CartItem from './CartItem';
 
-import Button from '../ui/Button';
+import Button from '@/components/ui/Button';
+import Container from '@/components/ui/Container';
+import Flex from '@/components/ui/Flex';
+
+import CartItem from './CartItem';
 import NoItems from './NoItems';
+
 import { useCart } from '@/hooks/useCart';
 
 const Cart = () => {
@@ -26,26 +28,23 @@ const Cart = () => {
 
 const Wrapper = styled(Container)`
   ${Flex}
+  margin: 3rem 0;
   flex-direction: column;
   justify-content: flex-start;
-  position: fixed;
   background-color: ${({ theme }) => theme.white};
-  border-left: 1px solid ${({ theme }) => theme.lightGray};
-  right: 0;
-  height: 100%;
+  min-height: 300px;
   width: 100%;
-  max-width: 300px;
+  max-width: 600px;
   padding: 20px;
-  overflow-y: scroll;
   gap: 20px;
+  border: 1px solid ${({ theme }) => theme.lightGray};
+  border-radius: 1rem;
 `;
 
 const CheckoutButton = styled(Button)`
   background-color: ${({ theme }) => theme.brightRed};
-  width: calc(100% - 40px);
-  position: absolute;
-  bottom: 20px;
   font-weight: 600;
+  margin-top: auto;
 `;
 
 export default Cart;

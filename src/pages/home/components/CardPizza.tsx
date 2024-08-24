@@ -1,6 +1,5 @@
 import type { Pizza } from '@/types/Pizza';
 import { formatNumber } from '@/utils/formatNumber';
-import { truncateText } from '@/utils/truncateText';
 
 import { GiPizzaSlice } from 'react-icons/gi';
 import { PiEyesFill } from 'react-icons/pi';
@@ -17,7 +16,8 @@ interface CardPizzaProps {
 }
 
 const CardPizza = ({ pizza }: CardPizzaProps) => {
-  const { desc, name, price, ingredients, img } = pizza;
+  const { name, price, ingredients, img } = pizza;
+
   return (
     <Wrapper>
       <PizzaImage src={img} />
@@ -25,7 +25,6 @@ const CardPizza = ({ pizza }: CardPizzaProps) => {
         <GiPizzaSlice size={30} />
         Pizza {name}
       </PizzaTitle>
-      <PizzaDesc>{truncateText(desc, 260)}</PizzaDesc>
       <IngredientsContainer>
         <h3>Ingredientes:</h3>
         <Ingredients items={ingredients} />
@@ -69,13 +68,6 @@ const PizzaTitle = styled(Title)`
   display: flex;
   gap: 5px;
   border-bottom: 1px solid ${({ theme }) => theme.lightGray};
-`;
-
-const PizzaDesc = styled.p`
-  font-size: 12px;
-  padding: 30px 20px 0px;
-  color: ${({ theme }) => theme.gray};
-  overflow: hidden;
 `;
 
 const IngredientsContainer = styled.div`

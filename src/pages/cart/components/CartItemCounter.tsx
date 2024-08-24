@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Flex from '../ui/Flex';
 
 import { HiPlus, HiMinus } from 'react-icons/hi';
-import Button from '../ui/Button';
+import Flex from '@/components/ui/Flex';
+import Button from '@/components/ui/Button';
 
 interface CartItemCounterProps {
   count: number;

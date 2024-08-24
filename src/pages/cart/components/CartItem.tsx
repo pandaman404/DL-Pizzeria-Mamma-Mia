@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import Flex from '../ui/Flex';
+
 import { PizzaCartItem } from '@/types/PizzaCartItem';
-import Title from '../ui/Title';
+import Flex from '@/components/ui/Flex';
+import Title from '@/components/ui/Title';
+
 import CartItemCounter from './CartItemCounter';
+
 import { formatNumber } from '@/utils/formatNumber';
 
 export interface CartItemProps extends PizzaCartItem {
