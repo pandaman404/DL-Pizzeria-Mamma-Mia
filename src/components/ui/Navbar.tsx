@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-
-import Logo from './ui/Logo';
-import Flex from './ui/Flex';
-import CartTotalButton from './CartTotalButton';
-import NavButton from './NavButton';
+import Logo from './Logo';
+import NavButton from '../NavButton';
+import CartTotalButton from '../CartTotalButton';
+import Flex from './Flex';
 
 const Navbar = () => {
   const token = false;

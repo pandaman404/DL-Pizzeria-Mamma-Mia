@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Flex from './ui/Flex';
+import Flex from './Flex';
 import { getCurrentYear } from '@/utils/getCurrentYear';
 
 const Footer = () => {
