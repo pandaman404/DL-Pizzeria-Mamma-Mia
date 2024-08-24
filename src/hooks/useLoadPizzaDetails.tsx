@@ -3,7 +3,7 @@ import { Pizza } from '@/types/Pizza';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export function useLoadPizzaDetails() {
+function useLoadPizzaDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [pizza, setPizza] = useState<Pizza | null>(null);
@@ -33,3 +33,5 @@ export function useLoadPizzaDetails() {
     isLoading,
   };
 }
+
+export default useLoadPizzaDetails;

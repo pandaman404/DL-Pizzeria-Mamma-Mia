@@ -1,6 +1,6 @@
 import LoadingSpinner from '@/components/LoadingSpinner';
 import RootLayout from '@/components/ui/RootLayout';
-import { useLoadPizzaDetails } from '@/hooks/useLoadPizzaDetails';
+import useLoadPizzaDetails from '@/hooks/useLoadPizzaDetails';
 import PizzaDetails from './components/PizzaDetails';
 
 const PizzaPage = () => {

@@ -28,10 +28,8 @@ const Wrapper = styled.div`
   ${Flex}
   min-height: 100px;
   width: 100%;
-  padding: 20px;
   justify-content: flex-start;
   flex-direction: column;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
 
   h3 {
     color: ${({ theme }) => theme.deepBlue};

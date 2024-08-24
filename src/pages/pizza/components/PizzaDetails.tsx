@@ -2,38 +2,65 @@ import styled from 'styled-components';
 
 import { Pizza } from '@/types/Pizza';
 
-import Container from '@/components/ui/Container';
-import Flex from '@/components/ui/Flex';
-
 import PizzaImage from '@/components/pizza/PizzaImage';
 import PizzaTitle from '@/components/pizza/PizzaTitle';
 import PizzaDescription from '@/components/pizza/PizzaDescription';
 import PizzaIngredients from '@/components/pizza/PizzaIngredients';
 import PizzaPrice from '@/components/pizza/PizzaPrice';
 import AddToCartButton from '@/components/pizza/AddToCartButton';
+import Flex from '@/components/ui/Flex';
 
 interface PizzaDetailsProps extends Pizza {}
 
 const PizzaDetails = ({ img, name, desc, price, ingredients }: PizzaDetailsProps) => {
   return (
     <Wrapper>
-      <PizzaImage src={img} />
-      <PizzaTitle name={name} />
-      <PizzaDescription desc={desc} />
-      <PizzaIngredients items={ingredients} />
-      <div>
-        <PizzaPrice price={price} />
-        <AddToCartButton />
+      <PizzaImage src={img} className='pizza-details-img' />
+      <div className='pizza-details-text'>
+        <PizzaTitle name={name} />
+        <PizzaDescription desc={desc} />
+        <PizzaIngredients items={ingredients} />
+        <div className='price-container'>
+          <PizzaPrice price={price} />
+          <AddToCartButton />
+        </div>
       </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled(Container)`
-  /* ${Flex} */
+const Wrapper = styled.div`
+  ${Flex}
+  max-width: 1366px;
+  flex-direction: column;
   border: 1px solid ${({ theme }) => theme.lightGray};
   border-radius: 1rem;
-  margin: 2rem;
+  padding: 2rem;
+  gap: 2rem;
+  margin: 20px 20px;
+
+  @media (min-width: 1200px) {
+    align-items: flex-start;
+    flex-direction: row;
+    max-height: 500px;
+  }
+
+  .pizza-details-img {
+    flex: 1;
+    border-radius: 1rem;
+    border-right: 10px solid ${({ theme }) => theme.softBeige};
+    max-height: 450px;
+  }
+
+  .pizza-details-text {
+    flex: 1;
+
+    .price-container {
+      ${Flex}
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export default PizzaDetails;

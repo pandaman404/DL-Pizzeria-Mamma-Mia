@@ -24,7 +24,9 @@ const CardPizza = ({ pizza }: CardPizzaProps) => {
     <Wrapper>
       <PizzaImage src={img} />
       <PizzaTitle name={name} />
-      <PizzaIngredients items={ingredients} />
+      <div className='ingredients-container'>
+        <PizzaIngredients items={ingredients} />
+      </div>
       <PriceContainer>
         <PizzaPrice price={price} />
         <div>
@@ -45,6 +47,10 @@ const Wrapper = styled.article`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+
+  .ingredients-container {
+    padding: 0 2rem;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -53,6 +59,7 @@ const PriceContainer = styled.div`
   padding: 20px;
   flex-direction: column;
   gap: 10px;
+  border-top: 1px solid ${({ theme }) => theme.lightGray};
 
   div {
     width: 100%;

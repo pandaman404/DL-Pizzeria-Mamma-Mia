@@ -9,7 +9,7 @@ interface PizzaTitleProps {
 const PizzaTitle = ({ name }: PizzaTitleProps) => {
   return (
     <Wrapper>
-      <GiPizzaSlice size={30} />
+      <GiPizzaSlice size={30} className='icon' />
       Pizza {name}
     </Wrapper>
   );
@@ -20,9 +20,9 @@ export const Wrapper = styled(Title)`
   padding: 20px;
   width: 100%;
   justify-content: center;
+  align-items: center;
   display: flex;
   gap: 5px;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
 `;
 
 export default PizzaTitle;
