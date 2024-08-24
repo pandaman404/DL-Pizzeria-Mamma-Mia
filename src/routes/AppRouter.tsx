@@ -3,6 +3,7 @@ import HomePage from '@/pages/home';
 import LoginPage from '@/pages/auth/login';
 import RegisterPage from '@/pages/auth/register';
 import CartPage from '@/pages/cart';
+import PizzaPage from '@/pages/pizza';
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AppRouter = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/pizza/:id' element={<PizzaPage />} />
         <Route path='*' element={<Navigate to='/home' />} />
       </Routes>
     </BrowserRouter>

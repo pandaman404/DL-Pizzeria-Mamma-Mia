@@ -1,43 +1,37 @@
-import type { Pizza } from '@/types/Pizza';
-import { formatNumber } from '@/utils/formatNumber';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-import { GiPizzaSlice } from 'react-icons/gi';
+import type { Pizza } from '@/types/Pizza';
 import { PiEyesFill } from 'react-icons/pi';
-import { IoCart } from 'react-icons/io5';
 
 import Flex from '@/components/ui/Flex';
-import Title from '@/components/ui/Title';
-import styled from 'styled-components';
 import Button from '@/components/ui/Button';
-import Ingredients from './Ingredients';
+
+import PizzaTitle from '@/components/pizza/PizzaTitle';
+import PizzaIngredients from '@/components/pizza/PizzaIngredients';
+import PizzaPrice from '@/components/pizza/PizzaPrice';
+import PizzaImage from '@/components/pizza/PizzaImage';
+import AddToCartButton from '@/components/pizza/AddToCartButton';
 
 interface CardPizzaProps {
   pizza: Pizza;
 }
 
 const CardPizza = ({ pizza }: CardPizzaProps) => {
-  const { name, price, ingredients, img } = pizza;
+  const { id, name, price, ingredients, img } = pizza;
 
   return (
     <Wrapper>
       <PizzaImage src={img} />
-      <PizzaTitle as='h2'>
-        <GiPizzaSlice size={30} />
-        Pizza {name}
-      </PizzaTitle>
-      <IngredientsContainer>
-        <h3>Ingredientes:</h3>
-        <Ingredients items={ingredients} />
-      </IngredientsContainer>
+      <PizzaTitle name={name} />
+      <PizzaIngredients items={ingredients} />
       <PriceContainer>
-        <span>${formatNumber(price)}</span>
+        <PizzaPrice price={price} />
         <div>
-          <GoToDetailsButton as='button'>
+          <GoToDetailsButton as={NavLink} to={`/pizza/${id}`}>
             Ver Más <PiEyesFill size={15} />
           </GoToDetailsButton>
-          <AddToCartButton as='button'>
-            Añadir <IoCart size={15} />
-          </AddToCartButton>
+          <AddToCartButton />
         </div>
       </PriceContainer>
     </Wrapper>
@@ -53,53 +47,12 @@ const Wrapper = styled.article`
   flex-direction: column;
 `;
 
-const PizzaImage = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-bottom: 4px solid ${({ theme }) => theme.softBeige};
-`;
-
-const PizzaTitle = styled(Title)`
-  color: ${({ theme }) => theme.brightRed};
-  padding: 20px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  gap: 5px;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
-`;
-
-const IngredientsContainer = styled.div`
-  ${Flex}
-  min-height: 100px;
-  width: 100%;
-  padding: 20px;
-  justify-content: flex-start;
-  flex-direction: column;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
-
-  h3 {
-    color: ${({ theme }) => theme.deepBlue};
-    font-weight: 400;
-    font-size: 14px;
-    text-transform: uppercase;
-    width: 100%;
-  }
-`;
-
 const PriceContainer = styled.div`
   ${Flex}
   width: 100%;
   padding: 20px;
   flex-direction: column;
   gap: 10px;
-
-  span {
-    font-size: 24px;
-    font-weight: bold;
-    color: ${({ theme }) => theme.deepBlue};
-  }
 
   div {
     width: 100%;
@@ -112,11 +65,6 @@ const GoToDetailsButton = styled(Button)`
   border: 1px solid ${({ theme }) => theme.lightGray};
   background-color: transparent;
   color: ${({ theme }) => theme.deepBlue};
-`;
-
-const AddToCartButton = styled(Button)`
-  border: 0;
-  background-color: ${({ theme }) => theme.brightRed};
 `;
 
 export default CardPizza;

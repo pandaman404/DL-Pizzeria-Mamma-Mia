@@ -14,3 +14,18 @@ export async function getPizzas(): Promise<Pizza[]> {
     }
   }
 }
+
+export async function getPizzaById(id: string): Promise<Pizza | null> {
+  try {
+    const { data } = await axiosClient.get(`/pizzas/${id}`);
+    console.log('log desde service');
+    console.log(data);
+    const pizza = data as Pizza;
+    return pizza;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+    return null;
+  }
+}
