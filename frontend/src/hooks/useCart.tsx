@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { PizzaCartItem } from '@/types/PizzaCartItem';
-import { pizzaCart } from '@/mocks/pizzas';
 import { formatNumber } from '@/utils/formatNumber';
 
 export function useCart() {
-  const [cart, setCart] = useState<PizzaCartItem[]>(pizzaCart);
+  const [cart, setCart] = useState<PizzaCartItem[]>([]);
 
   const calculateTotal = (): string => {
     let total = 0;
@@ -12,15 +11,23 @@ export function useCart() {
     return `$${formatNumber(total)}`;
   };
 
-  const addItemToCart = (pizzaId: string) => {
-    const updatedCart = cart.map((item) => {
-      if (item.id === pizzaId) {
-        item.count++;
-      }
-      return item;
-    });
+  const addItemToCart = (pizzaCartItem: PizzaCartItem) => {
+    const itemCartExists = cart.some((item) => item.id === pizzaCartItem.id);
+    let updatedCart: PizzaCartItem[] = [];
 
-    setCart(updatedCart);
+    if (itemCartExists) {
+      updatedCart = cart.map((item) => {
+        if (item.id === pizzaCartItem.id) {
+          item.count++;
+        }
+        return item;
+      });
+
+      setCart(updatedCart);
+    } else {
+      updatedCart = [...cart, pizzaCartItem];
+      setCart(updatedCart);
+    }
   };
 
   const removeItemFromCart = (pizzaId: string) => {

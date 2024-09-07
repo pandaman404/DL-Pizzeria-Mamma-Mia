@@ -6,7 +6,6 @@ import Flex from './Flex';
 
 const Navbar = () => {
   const token = false;
-  const total = 25000;
 
   return (
     <Wrapper as='nav'>
@@ -27,7 +26,7 @@ const Navbar = () => {
               </>
             )}
           </LinksContainer>
-          <CartTotalButton total={total} />
+          <CartTotalButton />
         </Buttons>
       </RootContainer>
     </Wrapper>

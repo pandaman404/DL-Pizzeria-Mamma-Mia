@@ -7,10 +7,10 @@ import Flex from '@/components/ui/Flex';
 import CartItem from './CartItem';
 import NoItems from './NoItems';
 
-import { useCart } from '@/hooks/useCart';
+import { useAppContext } from '@/context/AppContext';
 
 const Cart = () => {
-  const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useCart();
+  const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useAppContext();
 
   return (
     <Wrapper>
@@ -18,7 +18,12 @@ const Cart = () => {
       {cart.length > 0 &&
         cart.map((item) => {
           return (
-            <CartItem key={item.id} {...item} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} />
+            <CartItem
+              key={item.id}
+              pizzaCartItem={item}
+              addItemToCart={addItemToCart}
+              removeItemFromCart={removeItemFromCart}
+            />
           );
         })}
       <CheckoutButton onClick={() => console.log(calculateTotal())}>Pagar {calculateTotal()}</CheckoutButton>

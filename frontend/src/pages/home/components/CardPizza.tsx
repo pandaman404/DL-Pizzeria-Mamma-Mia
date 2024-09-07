@@ -12,6 +12,7 @@ import PizzaIngredients from '@/components/pizza/PizzaIngredients';
 import PizzaPrice from '@/components/pizza/PizzaPrice';
 import PizzaImage from '@/components/pizza/PizzaImage';
 import AddToCartButton from '@/components/pizza/AddToCartButton';
+import { PizzaCartItem } from '@/types/PizzaCartItem';
 
 interface CardPizzaProps {
   pizza: Pizza;
@@ -19,6 +20,13 @@ interface CardPizzaProps {
 
 const CardPizza = ({ pizza }: CardPizzaProps) => {
   const { id, name, price, ingredients, img } = pizza;
+  const pizzaCartItem: PizzaCartItem = {
+    id,
+    name,
+    price,
+    img,
+    count: 1,
+  };
 
   return (
     <Wrapper>
@@ -33,7 +41,7 @@ const CardPizza = ({ pizza }: CardPizzaProps) => {
           <GoToDetailsButton as={NavLink} to={`/pizza/${id}`}>
             Ver Más <PiEyesFill size={15} />
           </GoToDetailsButton>
-          <AddToCartButton />
+          <AddToCartButton pizzaCartItem={pizzaCartItem} />
         </div>
       </PriceContainer>
     </Wrapper>

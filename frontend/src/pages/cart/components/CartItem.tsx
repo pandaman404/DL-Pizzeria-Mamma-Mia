@@ -8,20 +8,25 @@ import CartItemCounter from './CartItemCounter';
 
 import { formatNumber } from '@/utils/formatNumber';
 
-export interface CartItemProps extends PizzaCartItem {
-  addItemToCart: (pizzaId: string) => void;
+export interface CartItemProps {
+  pizzaCartItem: PizzaCartItem;
+  addItemToCart: (pizzaCartItem: PizzaCartItem) => void;
   removeItemFromCart: (pizzaId: string) => void;
 }
 
-const CartItem = ({ id, name, price, count, img, addItemToCart, removeItemFromCart }: CartItemProps) => {
+const CartItem = ({ pizzaCartItem, addItemToCart, removeItemFromCart }: CartItemProps) => {
   return (
     <Wrapper>
-      <img className='cart-item-img' src={img} alt={name} />
+      <img className='cart-item-img' src={pizzaCartItem.img} alt={pizzaCartItem.name} />
       <div className='text-container'>
-        <CartItemTitle>Pizza {name}</CartItemTitle>
-        <p className='price'>${formatNumber(price)}</p>
+        <CartItemTitle>Pizza {pizzaCartItem.name}</CartItemTitle>
+        <p className='price'>${formatNumber(pizzaCartItem.price)}</p>
       </div>
-      <CartItemCounter count={count} id={id} addItemToCart={addItemToCart} removeItemFromCart={removeItemFromCart} />
+      <CartItemCounter
+        pizzaCartItem={pizzaCartItem}
+        addItemToCart={addItemToCart}
+        removeItemFromCart={removeItemFromCart}
+      />
     </Wrapper>
   );
 };

@@ -3,22 +3,22 @@ import styled from 'styled-components';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import Flex from '@/components/ui/Flex';
 import Button from '@/components/ui/Button';
+import { PizzaCartItem } from '@/types/PizzaCartItem';
 
 interface CartItemCounterProps {
-  count: number;
-  id: string;
-  addItemToCart: (pizzaId: string) => void;
+  pizzaCartItem: PizzaCartItem;
+  addItemToCart: (pizzaCartItem: PizzaCartItem) => void;
   removeItemFromCart: (pizzaId: string) => void;
 }
 
-const CartItemCounter = ({ count = 0, id, addItemToCart, removeItemFromCart }: CartItemCounterProps) => {
+const CartItemCounter = ({ pizzaCartItem, addItemToCart, removeItemFromCart }: CartItemCounterProps) => {
   return (
     <Wrapper>
-      <CountButton onClick={() => addItemToCart(id)}>
+      <CountButton onClick={() => addItemToCart(pizzaCartItem)}>
         <HiPlus />
       </CountButton>
-      <span>{count}</span>
-      <CountButton onClick={() => removeItemFromCart(id)}>
+      <span>{pizzaCartItem.count}</span>
+      <CountButton onClick={() => removeItemFromCart(pizzaCartItem.id)}>
         <HiMinus />
       </CountButton>
     </Wrapper>

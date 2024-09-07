@@ -1,18 +1,17 @@
 import styled from 'styled-components';
-import { IoCart } from 'react-icons/io5';
-import Button from '@/components/ui/Button';
-import { formatNumber } from '@/utils/formatNumber';
 import { NavLink } from 'react-router-dom';
 
-interface CartButtonProps {
-  total: number;
-}
+import { IoCart } from 'react-icons/io5';
 
-const CartTotalButton = ({ total }: CartButtonProps) => {
+import Button from '@/components/ui/Button';
+import { useAppContext } from '@/context/AppContext';
+
+const CartTotalButton = () => {
+  const { calculateTotal } = useAppContext();
   return (
     <Wrapper as={NavLink} to='/cart'>
       <IoCart />
-      Total: ${formatNumber(total)}
+      Total: {calculateTotal()}
     </Wrapper>
   );
 };
