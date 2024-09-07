@@ -9,10 +9,19 @@ import PizzaIngredients from '@/components/pizza/PizzaIngredients';
 import PizzaPrice from '@/components/pizza/PizzaPrice';
 import AddToCartButton from '@/components/pizza/AddToCartButton';
 import Flex from '@/components/ui/Flex';
+import { PizzaCartItem } from '@/types/PizzaCartItem';
 
 interface PizzaDetailsProps extends Pizza {}
 
-const PizzaDetails = ({ img, name, desc, price, ingredients }: PizzaDetailsProps) => {
+const PizzaDetails = ({ id, img, name, desc, price, ingredients }: PizzaDetailsProps) => {
+  const pizzaCartItem: PizzaCartItem = {
+    id,
+    name,
+    price,
+    img,
+    count: 1,
+  };
+
   return (
     <Wrapper>
       <PizzaImage src={img} className='pizza-details-img' />
@@ -22,7 +31,7 @@ const PizzaDetails = ({ img, name, desc, price, ingredients }: PizzaDetailsProps
         <PizzaIngredients items={ingredients} />
         <div className='price-container'>
           <PizzaPrice price={price} />
-          <AddToCartButton />
+          <AddToCartButton pizzaCartItem={pizzaCartItem} />
         </div>
       </div>
     </Wrapper>

@@ -3,6 +3,7 @@ import { GlobalStyles } from './GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '@/constants/colors';
 import { CartContextProvider } from '@/context/CartContext';
+import { UserContextProvider } from '@/context/UserContext';
 
 interface AppProviderProps {
   children: ReactNode;
@@ -10,12 +11,14 @@ interface AppProviderProps {
 
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <CartContextProvider>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
-        {children}
-      </ThemeProvider>
-    </CartContextProvider>
+    <UserContextProvider>
+      <CartContextProvider>
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyles />
+          {children}
+        </ThemeProvider>
+      </CartContextProvider>
+    </UserContextProvider>
   );
 };
 

@@ -8,9 +8,11 @@ import CartItem from './CartItem';
 import NoItems from './NoItems';
 
 import { useCartContext } from '@/context/CartContext';
+import { useUserContext } from '@/context/UserContext';
 
 const Cart = () => {
   const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useCartContext();
+  const { token } = useUserContext();
 
   return (
     <Wrapper>
@@ -26,7 +28,9 @@ const Cart = () => {
             />
           );
         })}
-      <CheckoutButton onClick={() => console.log(calculateTotal())}>Pagar {calculateTotal()}</CheckoutButton>
+      <CheckoutButton disabled={!token} onClick={() => console.log(calculateTotal())}>
+        Pagar {calculateTotal()}
+      </CheckoutButton>
     </Wrapper>
   );
 };
@@ -50,6 +54,11 @@ const CheckoutButton = styled(Button)`
   background-color: ${({ theme }) => theme.brightRed};
   font-weight: 600;
   margin-top: auto;
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.lightGray};
+    cursor: not-allowed;
+  }
 `;
 
 export default Cart;

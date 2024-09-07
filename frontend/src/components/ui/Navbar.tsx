@@ -3,9 +3,10 @@ import Logo from './Logo';
 import NavButton from '../NavButton';
 import CartTotalButton from '../CartTotalButton';
 import Flex from './Flex';
+import { useUserContext } from '@/context/UserContext';
 
 const Navbar = () => {
-  const token = false;
+  const { token } = useUserContext();
 
   return (
     <Wrapper as='nav'>

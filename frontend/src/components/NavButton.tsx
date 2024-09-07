@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { BiSolidHome, BiSolidLock, BiSolidLockOpen } from 'react-icons/bi';
 import { BsFillPersonFill } from 'react-icons/bs';
 import Flex from './ui/Flex';
+import Button from './ui/Button';
+import { useUserContext } from '@/context/UserContext';
 
 interface NavButtonProps {
   pathName: string;
@@ -10,6 +12,8 @@ interface NavButtonProps {
 }
 
 const NavButton = ({ pathName, text }: NavButtonProps) => {
+  const { logout } = useUserContext();
+
   const renderIcon = () => {
     switch (pathName) {
       case '/home':
@@ -17,8 +21,6 @@ const NavButton = ({ pathName, text }: NavButtonProps) => {
       case '/login':
       case '/register':
         return <BiSolidLock />;
-      case '/logout':
-        return <BiSolidLockOpen />;
       case '/profile':
         return <BsFillPersonFill />;
       default:
@@ -26,15 +28,24 @@ const NavButton = ({ pathName, text }: NavButtonProps) => {
     }
   };
 
+  if (pathName === '/logout') {
+    return (
+      <LogoutButton onClick={logout}>
+        <BiSolidLockOpen />
+        Logout
+      </LogoutButton>
+    );
+  }
+
   return (
-    <Wrapper to={pathName} className={({ isActive }) => (isActive ? 'active' : '')}>
+    <NavLinkItem to={pathName} className={({ isActive }) => (isActive ? 'active' : '')}>
       {renderIcon()}
       {text}
-    </Wrapper>
+    </NavLinkItem>
   );
 };
 
-const Wrapper = styled(NavLink)`
+const NavLinkItem = styled(NavLink)`
   ${Flex}
   color: ${({ theme }) => theme.white};
   text-decoration: none;
@@ -44,6 +55,12 @@ const Wrapper = styled(NavLink)`
   &.active {
     color: ${({ theme }) => theme.softBeige};
   }
+`;
+
+const LogoutButton = styled(Button)`
+  background-color: transparent;
+  padding: 0;
+  min-width: auto;
 `;
 
 export default NavButton;
