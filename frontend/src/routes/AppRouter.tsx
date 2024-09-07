@@ -15,8 +15,8 @@ const AppRouter = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/login' element={token ? <Navigate to='/profile' /> : <LoginPage />} />
+        <Route path='/register' element={token ? <Navigate to='/profile' /> : <RegisterPage />} />
         <Route path='/profile' element={token ? <ProfilePage /> : <Navigate to='/login' />} />
         <Route path='/cart' element={<CartPage />} />
         <Route path='/pizza/:id' element={<PizzaPage />} />
