@@ -1,6 +1,6 @@
 import type { PizzaCartItem } from '../PizzaCartItem';
 
-export interface AppContextType {
+export interface CartContextType {
   cart: PizzaCartItem[];
   calculateTotal: () => string;
   addItemToCart: (pizzaCartItem: PizzaCartItem) => void;
