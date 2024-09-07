@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { IoCart } from 'react-icons/io5';
 
 import Button from '@/components/ui/Button';
-import { useAppContext } from '@/context/AppContext';
+import { useCartContext } from '@/context/CartContext';
 
 const CartTotalButton = () => {
-  const { calculateTotal } = useAppContext();
+  const { calculateTotal } = useCartContext();
   return (
     <Wrapper as={NavLink} to='/cart'>
       <IoCart />

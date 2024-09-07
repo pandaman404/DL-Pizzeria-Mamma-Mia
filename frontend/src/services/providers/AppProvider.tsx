@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { GlobalStyles } from './GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '@/constants/colors';
-import { AppContextProvider } from '@/context/AppContext';
+import { CartContextProvider } from '@/context/CartContext';
 
 interface AppProviderProps {
   children: ReactNode;
@@ -10,12 +10,12 @@ interface AppProviderProps {
 
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <AppContextProvider>
+    <CartContextProvider>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
         {children}
       </ThemeProvider>
-    </AppContextProvider>
+    </CartContextProvider>
   );
 };
 

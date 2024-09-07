@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '../ui/Button';
 import { IoCart } from 'react-icons/io5';
-import { useAppContext } from '@/context/AppContext';
+import { useCartContext } from '@/context/CartContext';
 import { PizzaCartItem } from '@/types/PizzaCartItem';
 
 interface addToCartButtonProps {
@@ -9,7 +9,7 @@ interface addToCartButtonProps {
 }
 
 const AddToCartButton = ({ pizzaCartItem }: addToCartButtonProps) => {
-  const { addItemToCart } = useAppContext();
+  const { addItemToCart } = useCartContext();
 
   return (
     <Wrapper as='button' onClick={() => addItemToCart(pizzaCartItem)}>

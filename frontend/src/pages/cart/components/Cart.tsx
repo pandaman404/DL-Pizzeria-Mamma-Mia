@@ -7,10 +7,10 @@ import Flex from '@/components/ui/Flex';
 import CartItem from './CartItem';
 import NoItems from './NoItems';
 
-import { useAppContext } from '@/context/AppContext';
+import { useCartContext } from '@/context/CartContext';
 
 const Cart = () => {
-  const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useAppContext();
+  const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useCartContext();
 
   return (
     <Wrapper>
