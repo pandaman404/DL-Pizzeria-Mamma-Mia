@@ -6,10 +6,9 @@ import { UserContextType } from '@/types/context/UserContextType';
 export const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { token, logout } = useAuth();
-  console.log('hola desde user context');
+  const { token, user, login, logout } = useAuth();
 
-  return <UserContext.Provider value={{ token, logout }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ token, user, login, logout }}>{children}</UserContext.Provider>;
 };
 
 export const useUserContext = () => useContext(UserContext);
