@@ -3,9 +3,12 @@ import Container from '@/components/ui/Container';
 import Flex from '@/components/ui/Flex';
 import RootLayout from '@/components/ui/RootLayout';
 import Title from '@/components/ui/Title';
+import { useUserContext } from '@/context/UserContext';
 import styled from 'styled-components';
 
 const ProfilePage = () => {
+  const { logout } = useUserContext();
+
   return (
     <RootLayout>
       <ProfileContainer>
@@ -14,7 +17,7 @@ const ProfilePage = () => {
           <strong>Email:</strong>
           <span>ejemplo@gmail.com</span>
         </div>
-        <LogoutButton onClick={() => console.log('cerrar sesión')}>Cerrar Sesión</LogoutButton>
+        <LogoutButton onClick={logout}>Cerrar Sesión</LogoutButton>
       </ProfileContainer>
     </RootLayout>
   );

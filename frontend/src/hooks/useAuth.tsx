@@ -1,9 +1,10 @@
-import { authLogin } from '@/services/api/AuthService';
-import type { User } from '@/types/User';
+import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
+import { authLogin, authRegister } from '@/services/api/AuthService';
+import type { User } from '@/types/User';
 
 export function useAuth() {
-  const [token, setToken] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(Cookies.get('token') || null);
   const [user, setUser] = useState<User>({} as User);
 
   const login = async (email: string, password: string) => {
@@ -11,7 +12,12 @@ export function useAuth() {
       const result = await authLogin(email, password);
       if ('token' in result) {
         console.log(result);
-        setUser(result);
+        Cookies.set('token', result.token, { expires: 7 });
+        setToken(result.token);
+        setUser((user) => {
+          user.email = result.email;
+          return user;
+        });
       }
     } catch (error) {
       console.log(error);
@@ -19,19 +25,40 @@ export function useAuth() {
   };
 
   const logout = () => {
-    setToken(false);
+    Cookies.remove('token');
+    setToken(null);
+    setUser({} as User);
   };
 
-  const register = () => {};
+  const register = async (email: string, password: string) => {
+    try {
+      const result = await authRegister(email, password);
+      if ('token' in result) {
+        console.log(result);
+        Cookies.set('token', result.token, { expires: 7 });
+        setToken(result.token);
+        setUser((user) => {
+          user.email = result.email;
+          return user;
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    // authLogin('test@test.com', '123123');
+    const storedToken = Cookies.get('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
   }, []);
 
   return {
     token,
     user,
     login,
+    register,
     logout,
   };
 }

@@ -3,13 +3,15 @@ import Container from '@/components/ui/Container';
 import Flex from '@/components/ui/Flex';
 import FormField from '@/components/ui/FormField';
 import Title from '@/components/ui/Title';
+import { regexEmail } from '@/constants/regex';
+import { useUserContext } from '@/context/UserContext';
 import { RegisterFormValues } from '@/types/forms/RegisterFormValues';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import styled from 'styled-components';
 import * as yup from 'Yup';
 
 const RegisterFormSchema = yup.object().shape({
-  email: yup.string().email('Ingresa un email valido').required('Campo requerido'),
+  email: yup.string().matches(regexEmail, 'Ingresa un email valido').required('Campo requerido'),
   password: yup.string().min(6, 'La contraseña debe tener minimo 6 caracteres').required('Campo requerido'),
   confirmPassword: yup
     .string()
@@ -18,38 +20,44 @@ const RegisterFormSchema = yup.object().shape({
 });
 
 const RegisterForm = () => {
+  const { register } = useUserContext();
   const initialValues: RegisterFormValues = { email: '', password: '', confirmPassword: '' };
+
+  const handleSubmit = async (values: RegisterFormValues, actions: FormikHelpers<RegisterFormValues>) => {
+    const { email, confirmPassword } = values;
+    try {
+      await register(email, confirmPassword);
+    } finally {
+      actions.setSubmitting(false);
+    }
+  };
 
   return (
     <Wrapper>
       <Title as='h2'>Register</Title>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={RegisterFormSchema}
-        onSubmit={(values, actions) => {
-          console.log({ values, actions });
-          alert('Register completado exitosamente!');
-          actions.setSubmitting(false);
-        }}
-      >
-        <Form>
-          <FormField>
-            <label htmlFor='email'>Correo: </label>
-            <Field id='email' name='email' placeholder='micorreo@desafiolatam.cl' />
-            <ErrorMessage name='email' component='div' className='error' />
-          </FormField>
-          <FormField>
-            <label htmlFor='password'>Contraseña:</label>
-            <Field id='password' name='password' type='password' placeholder='******' />
-            <ErrorMessage name='password' component='div' className='error' />
-          </FormField>
-          <FormField>
-            <label htmlFor='confirmPassword'>Confirmar Contraseña:</label>
-            <Field id='confirmPassword' name='confirmPassword' type='password' placeholder='******' />
-            <ErrorMessage name='confirmPassword' component='div' className='error' />
-          </FormField>
-          <SubmitButton type='submit'>Registrarse</SubmitButton>
-        </Form>
+      <Formik initialValues={initialValues} validationSchema={RegisterFormSchema} onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+          <Form>
+            <FormField>
+              <label htmlFor='email'>Correo: </label>
+              <Field id='email' name='email' placeholder='micorreo@desafiolatam.cl' />
+              <ErrorMessage name='email' component='div' className='error' />
+            </FormField>
+            <FormField>
+              <label htmlFor='password'>Contraseña:</label>
+              <Field id='password' name='password' type='password' placeholder='******' />
+              <ErrorMessage name='password' component='div' className='error' />
+            </FormField>
+            <FormField>
+              <label htmlFor='confirmPassword'>Confirmar Contraseña:</label>
+              <Field id='confirmPassword' name='confirmPassword' type='password' placeholder='******' />
+              <ErrorMessage name='confirmPassword' component='div' className='error' />
+            </FormField>
+            <SubmitButton disabled={isSubmitting} type='submit'>
+              Registrarse
+            </SubmitButton>
+          </Form>
+        )}
       </Formik>
     </Wrapper>
   );
