@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { authLogin, authRegister } from '@/services/api/AuthService';
+import { authLogin, authRegister, authMe } from '@/services/api/AuthService';
 import type { User } from '@/types/User';
 
 export function useAuth() {
@@ -47,10 +47,22 @@ export function useAuth() {
     }
   };
 
+  const getProfile = async (token: string) => {
+    try {
+      const loggedUser = await authMe(token);
+      if ('id' in loggedUser) {
+        setUser(loggedUser);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const storedToken = Cookies.get('token');
     if (storedToken) {
       setToken(storedToken);
+      getProfile(storedToken);
     }
   }, []);
 

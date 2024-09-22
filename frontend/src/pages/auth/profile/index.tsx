@@ -7,7 +7,7 @@ import { useUserContext } from '@/context/UserContext';
 import styled from 'styled-components';
 
 const ProfilePage = () => {
-  const { logout } = useUserContext();
+  const { user, logout } = useUserContext();
 
   return (
     <RootLayout>
@@ -15,7 +15,7 @@ const ProfilePage = () => {
         <Title as='h2'>Perfil</Title>
         <div className='email-container'>
           <strong>Email:</strong>
-          <span>ejemplo@gmail.com</span>
+          <span>{user.email}</span>
         </div>
         <LogoutButton onClick={logout}>Cerrar Sesión</LogoutButton>
       </ProfileContainer>
