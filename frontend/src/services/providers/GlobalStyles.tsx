@@ -18,10 +18,13 @@ export const GlobalStyles = createGlobalStyle`
 		text-wrap: balance;
 	}
 
+	h1, h2, h3, h4, h5, h6, body, p, ul, section, div {
+		margin: 0;
+		padding: 0;
+	}
+
 	body {
 		min-height: 100dvh;
-		margin: 0;
-    	padding: 0;
     	font-family: "Poppins", sans-serif;
 	}
 `;

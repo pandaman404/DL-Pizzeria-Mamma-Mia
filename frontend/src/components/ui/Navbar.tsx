@@ -40,6 +40,7 @@ const Wrapper = styled.nav`
   background-color: ${({ theme }) => theme.brightRed};
   color: ${({ theme }) => theme.white};
   position: relative;
+  max-height: 10dvh;
 `;
 
 const RootContainer = styled.div`
