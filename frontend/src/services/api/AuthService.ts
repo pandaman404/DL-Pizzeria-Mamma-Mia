@@ -32,7 +32,7 @@ export async function authMe(token: string): Promise<User | ApiError> {
         Authorization: `Bearer ${token}`,
       },
     });
-    const loggedUser = data;
+    const loggedUser = data as User;
     return loggedUser;
   } catch (error) {
     console.error(error);

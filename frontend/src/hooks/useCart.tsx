@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { PizzaCartItem } from '@/types/PizzaCartItem';
 import { formatNumber } from '@/utils/formatNumber';
+import { checkout } from '@/services/api/CheckoutService';
+import { toast } from 'sonner';
 
 export function useCart() {
   const [cart, setCart] = useState<PizzaCartItem[]>([]);
@@ -50,10 +52,24 @@ export function useCart() {
     }
   };
 
+  const completeCheckout = async (token: string | null) => {
+    try {
+      const result = await checkout(token!, cart);
+      if ('message' in result) {
+        toast.success('Compra realizada con éxito!', {
+          duration: 1000,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     cart,
     calculateTotal,
     addItemToCart,
     removeItemFromCart,
+    completeCheckout,
   };
 }

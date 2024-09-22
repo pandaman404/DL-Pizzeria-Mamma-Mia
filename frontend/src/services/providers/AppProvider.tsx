@@ -11,14 +11,16 @@ interface AppProviderProps {
 
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <UserContextProvider>
-      <CartContextProvider>
-        <ThemeProvider theme={defaultTheme}>
-          <GlobalStyles />
-          {children}
-        </ThemeProvider>
-      </CartContextProvider>
-    </UserContextProvider>
+    <>
+      <UserContextProvider>
+        <CartContextProvider>
+          <ThemeProvider theme={defaultTheme}>
+            <GlobalStyles />
+            {children}
+          </ThemeProvider>
+        </CartContextProvider>
+      </UserContextProvider>
+    </>
   );
 };
 

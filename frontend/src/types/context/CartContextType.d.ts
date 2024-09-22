@@ -5,4 +5,5 @@ export interface CartContextType {
   calculateTotal: () => string;
   addItemToCart: (pizzaCartItem: PizzaCartItem) => void;
   removeItemFromCart: (pizzaId: string) => void;
+  completeCheckout: (token: string | null) => Promise<void>;
 }

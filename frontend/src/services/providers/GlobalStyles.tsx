@@ -2,15 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
-	* {
-		margin: 0;
-		padding: 0;
-		font-family: "Poppins", sans-serif;
-	}
-
 	*, *::before, *:after {
 		box-sizing: border-box;
-	}
+	} 
 
 	input, button, textarea, select {
 		font: inherit;
@@ -26,5 +20,8 @@ export const GlobalStyles = createGlobalStyle`
 
 	body {
 		min-height: 100dvh;
+		margin: 0;
+    	padding: 0;
+    	font-family: "Poppins", sans-serif;
 	}
 `;

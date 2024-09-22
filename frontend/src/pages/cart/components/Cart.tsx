@@ -11,7 +11,7 @@ import { useCartContext } from '@/context/CartContext';
 import { useUserContext } from '@/context/UserContext';
 
 const Cart = () => {
-  const { cart, calculateTotal, addItemToCart, removeItemFromCart } = useCartContext();
+  const { cart, calculateTotal, addItemToCart, removeItemFromCart, completeCheckout } = useCartContext();
   const { token } = useUserContext();
 
   return (
@@ -28,7 +28,7 @@ const Cart = () => {
             />
           );
         })}
-      <CheckoutButton disabled={!token} onClick={() => console.log(calculateTotal())}>
+      <CheckoutButton disabled={!token || !cart.length} onClick={() => completeCheckout(token)}>
         Pagar {calculateTotal()}
       </CheckoutButton>
     </Wrapper>
