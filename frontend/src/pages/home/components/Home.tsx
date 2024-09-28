@@ -6,12 +6,13 @@ import { useLoadPizzas } from '@/hooks/useLoadPizzas';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 const Home = () => {
-  const { pizzas, isLoading } = useLoadPizzas();
+  const { pizzas, isLoading, errorMessage } = useLoadPizzas();
   return (
     <Wrapper>
-      {(isLoading || !pizzas.length) && <LoadingSpinner />}
+      {isLoading && !errorMessage && <LoadingSpinner />}
+      {!isLoading && errorMessage && <span>Ups! intentalo de nuevo más tarde.</span>}
       {!isLoading &&
-        pizzas.length &&
+        !errorMessage &&
         pizzas.map((pizza) => {
           return <CardPizza key={pizza.id} pizza={pizza} />;
         })}
@@ -28,6 +29,14 @@ const Wrapper = styled(Container)`
 
   @media (min-width: 1360px) {
     padding: 20px 0;
+  }
+
+  span {
+    margin: 0 auto;
+    align-self: center;
+    color: ${({ theme }) => theme.brightRed};
+    font-size: 16px;
+    font-weight: 500;
   }
 `;
 

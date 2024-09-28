@@ -1,5 +1,5 @@
 import type { ApiError } from '@/types/api/ApiError';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api';
 
@@ -16,13 +16,12 @@ axiosClient.interceptors.response.use(
     // Any status code that lie within the range of 2xx cause this function to trigger
     return response;
   },
-  function (error: AxiosError) {
+  function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    const apiError = error.response?.data as ApiError;
+    const apiError = error.response ? error.response.data.error : error.message;
     const customError: ApiError = {
-      error: apiError.error || 'An error occurred',
+      error: apiError || 'An error occurred',
     };
-
     return Promise.reject(customError);
   }
 );
