@@ -10,7 +10,7 @@ export async function authLogin(email: string, password: string): Promise<ApiAut
     return user;
   } catch (error) {
     console.error(error);
-    return error as ApiError;
+    throw error as ApiError;
   }
 }
 
@@ -21,7 +21,7 @@ export async function authRegister(email: string, password: string): Promise<Api
     return newUser;
   } catch (error) {
     console.error(error);
-    return error as ApiError;
+    throw error as ApiError;
   }
 }
 
@@ -36,6 +36,6 @@ export async function authMe(token: string): Promise<User | ApiError> {
     return loggedUser;
   } catch (error) {
     console.error(error);
-    return error as ApiError;
+    throw error as ApiError;
   }
 }

@@ -15,6 +15,6 @@ export async function checkout(token: string, cart: PizzaCartItem[]): Promise<Ch
     return checkoutData;
   } catch (error) {
     console.error(error);
-    return error as ApiError;
+    throw error as ApiError;
   }
 }
